@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: hsla(206, 6%, 78%, 0.021);
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background: #000080;
+    border-radius: 8px;
+    font-size: 0;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
+}
+
+nav a {
+    font-size: 15px;
+    margin: 0 2vw;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    line-height: 50px;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    text-align: center;
+}
+
+nav .animation {
+    position: absolute;
+    height: 100%;
+    /* height: 5px; */
+    top: 0;
+    /* bottom: 0; */
+    z-index: 0;
+    background: #1abc9c;
+    border-radius: 8px;
+    transition: all .5s ease 0s;
+}
+
+nav a:nth-child(1) {
+    width: 100px;
+}
+
+.midbar {
+    padding: 25px;
+    background-color: #d5e8fe;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 95%;
+}
+
+#chats {
+    height: 50vh;
+    overflow-y: scroll;
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+.chat-box {
+    font-size: 16px;
+    padding: 30px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#bottomDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#divform {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 2vw;
+}
+
+#divform input,
+select {
+    margin: 3vh 0;
+    border-radius: 10px;
+}
+
+#prmpt {
+    width: 80vw;
+    height: 8vh;
+    border-radius: 15px;
+}
+
+#btn {
+    height: 40px;
+    width: 50px;
+}
+
+#optionSelect {
+    height: 40px;
+    width: 150px;
+
+}
+
+#vocab,
+#wordLimit {
+    height: 35px;
+    width: 150px;
+}
+
+.input-with-button {
+    position: relative;
+    display: inline-block;
+}
+
+.input-with-button input[type="text"] {
+    padding-right: 30px;
+    /* Adjust as needed */
+}
+
+.input-with-button input[type="button"] {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 10px;
+    height: 100%;
+    background-color: #000080;
+    color: white;
+}
