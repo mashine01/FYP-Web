@@ -68,7 +68,7 @@ body {
 }
 
 .input-group input[type="submit"] {
-  background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+  background: linear-gradient(to right, #2980b9, #6dd5fa);
   border: 0;
   color: white;
   padding: 10px 20px;
@@ -78,11 +78,20 @@ body {
 }
 
 .input-group input[type="submit"]:hover {
-  background: linear-gradient(to right, #ffffff, #6dd5fa, #2980b9);
+  background: linear-gradient(to right, #6dd5fa, #2980b9);
 }
 
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
+.login-link {
+  margin-top: 20px;
+  color: #888; /* Link color */
+}
+
+.login-link a {
+  color: #000000; /* Link color on hover */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+  color: #38f9d7; /* Link color on hover */
 }

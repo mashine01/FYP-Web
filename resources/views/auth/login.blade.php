@@ -4,49 +4,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="/css/login.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/register.css">
+    <style>
+        /* CSS for modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            animation-name: fadeIn;
+            animation-duration: 0.4s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Displaying Errors -->
     @if ($errors->any())
-        <div class="error-message">
+    <div id="errorModal" class="modal" style="display: block;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
             <ul>
                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
+    </div>
     @endif
-    <div class="login-container">
-        <h1>Login</h1>
+    <div class="signup-container">
+        <img style="object-fit: contain;" height="250px" width="250px" src="/images/logo.png" alt="logo">
+        <h2>Login</h2>
         <form id="login-form" action="{{ route('login') }}" method="post">
             @csrf
             @method('POST')
             <div class="input-group">
-                <input type="text" id="email" name="email" placeholder="E-Mail ID" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
             </div>
             <div class="input-group">
                 <input type="password" id="password" name="password" placeholder="Password" required>
             </div>
-            <div class="input-group">
-                <label for="remember-me">
-                    <input type="checkbox" id="remember-me" name="remember-me"> Remember Me
-                </label>
-            </div>
-            <div class="input-group">
-                <a href="#" class="forgot-password">Forgot Password?</a>
-            </div>
-            <div class="input-group">
-                <input type="submit" value="Login">
-            </div>
-            <div class="input-group">
-                <div class="error-message" id="error-message"></div> <br>
-                <a href="{{ route('register') }}">Sign up</a>
-            </div>
+            <input type="submit" value="Login">
+            <div class="login-link">Not a User?<a href="{{ route('register') }}"> Sign Up</a></div>
         </form>
     </div>
+
+    <script>
+        // JavaScript to control the modal
+        var modal = document.getElementById('errorModal');
+        var closeBtn = document.getElementsByClassName("close")[0];
+
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>
