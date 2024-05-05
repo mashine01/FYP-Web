@@ -12,14 +12,13 @@ class FrontController extends Controller
         return view('front.index');
     }
 
-
     public function prompt(Request $request)
     {
         try {
             $client = new Client();
-            $response = $client->post('https://cffd-34-126-97-189.ngrok-free.app/prompt', [
+            $response = $client->post('https://39b7-34-31-169-86.ngrok-free.app/prompt', [
                 'query' => $request->all()
-            ]);        
+            ]);
             $statusCode = $response->getStatusCode();
 
             if ($statusCode >= 200 && $statusCode < 300) {
