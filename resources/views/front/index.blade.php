@@ -5,16 +5,24 @@
     <meta charset="utf-8">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="/js/index.js"></script>
 </head>
 
 <body>
     <nav>
-        <img height="50px" width="80px" src="/images/logo.png" alt="logo">
-        <a href="#"><i class="fas fa-home"></i> Home</a>
-        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-                class="fas fa-sign-out-alt"></i> Logout</a>
+        <a href="#">Home</a>
+        <!-- <a href="#"><img src="logoutImg.png"></a> -->
+         <!--  <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <img src="img.png" onclick="toggleDropdown()"> </a>
+            -->
+        <!-- Profile Picture and Dropdown -->
+        <div class="profile-container">
+            <img src="pic.jpeg" alt="Profile Picture" class="profile-pic" onclick="toggleDropdown()">
+            <div class="dropdown-menu" id="dropdownMenu">
+            <a href="edit-profile.html">Edit</a>
+             <a href="#">Logout</a>
+            </div>
+        </div>
+
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
@@ -22,7 +30,7 @@
         <div class="animation start-home"></div>
     </nav>
     <div class="midbar">
-        <div id="chats">
+        <div class="chat-box" id="chats">
             I am JournalistAI, a finetuned model of LLama2. I am an artificial intelligence designed to
             process and generate human-like text based on the input provided to me. I am here to assist you with any
             questions or tasks you may have to the best of my abilities!
@@ -35,42 +43,36 @@
             @csrf
             <div id="divform">
                 <div class="input-container">
-                    <label for="wordLimit">Word limit</label>
+                    <label for="wordLimit">Word limit:</label>
                     <input type="number" id="wordLimit" name="word_limit" value="100" name="wordLimit"
                         min="100" max="300">
                 </div>
                 <div class="input-container">
-                    <label for="translate">Translate</label>
+                    <label for="translate">Translate:</label>
                     <select id="translate" name="translate">
                         <option value="">No</option>
                         <option value="ur">Urdu</option>
                     </select>
                 </div>
                 <div class="input-container">
-                    <button type="button" id="clearChatBtn" onclick="clear_chat()">Clear Chat</button>
+                    <label for="vocab">Vocabulary type:</label>
+                    <select id="vocab" name="vocab_type">
+                        <option value="easy">Easy</option>
+                        <option value="intermediate">Medium</option>
+                        <option value="advanced">Expert</option>
+                    </select>
                 </div>
             </div>
 
             <div class="input-with-button">
                 <input type="text" id="prmpt" name="prompt" placeholder=" Enter your prompt">
-                <input type="button" id="btn" value="→">
+                <input type="button" id="btn" value="->">
             </div>
         </form>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function clear_chat() {
-            localStorage.removeItem('promptsHistory');
-            promptsHistory = [];
-            $('#chats').empty();
-            $('#chats').html(
-                'I am JournalistAI, a finetuned model of LLama2. I am an artificial intelligence designed to process and generate human-like text based on the input provided to me. I am here to assist you with any questions or tasks you may have to the best of my abilities!'
-            );
-            console.log(promptsHistory);
-            updateChatHistory();
-        }
-
         $(document).ready(function() {
             // Load previous prompts from local storage
             var promptsHistory = JSON.parse(localStorage.getItem('promptsHistory')) || [];
@@ -78,19 +80,10 @@
             // Function to update chat history
             function updateChatHistory() {
                 $('#chats').empty();
-                if (promptsHistory.length > 0) {
-                    promptsHistory.forEach(function(prompt) {
-                        $('#chats').append('<div>' + prompt + '</div><hr>');
-                    });
-                } else {
-                    // If prompts history is empty, keep the initial text
-                    $('#chats').html(
-                        'I am JournalistAI, a finetuned model of LLama2. I am an artificial intelligence designed to process and generate human-like text based on the input provided to me. I am here to assist you with any questions or tasks you may have to the best of my abilities!'
-                    );
-                }
+                promptsHistory.forEach(function(prompt) {
+                    $('#chats').append('<div>' + prompt + '</div><hr>');
+                });
             }
-
-
 
             // Initial update
             updateChatHistory();
@@ -117,11 +110,11 @@
                         localStorage.setItem('promptsHistory', JSON.stringify(promptsHistory));
                         // Update chat history display
                         updateChatHistory();
-                        $("#btn").val("→");
+                        $("#btn").val("->");
                     },
                     error: function(xhr, status, error) {
                         console.error(error);
-                        $("#btn").val("→");
+                        $("#btn").val("->");
                     }
                 });
             });

@@ -16,21 +16,25 @@ class FrontController extends Controller
     {
         try {
             $client = new Client();
-            $response = $client->post('https://9474-35-232-212-70.ngrok-free.app/prompt', [
+<<<<<<< Updated upstream
+            $response = $client->post('https://e8ed-34-125-221-252.ngrok-free.app/prompt', [
+=======
+            $response = $client->post('https://28e9-34-125-161-165.ngrok-free.app/prompt', [
+>>>>>>> Stashed changes
                 'query' => $request->all()
             ]);
             $statusCode = $response->getStatusCode();
-        
+
             if ($statusCode >= 200 && $statusCode < 300) {
                 $data = json_decode($response->getBody(), true);
                 return $data;
             } else {
                 // Handle the error response
-                return "Error occurred while processing your request.";
+                return "Error: " . $statusCode;
             }
         } catch (\Exception $e) {
             // Handle any exceptions that occur
-            return "An unexpected error occurred while processing your request.";
+            return "Error: " . $e->getMessage();
         }
     }
 }

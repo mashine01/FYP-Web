@@ -34,14 +34,19 @@ body {
 
 .input-group input[type="text"],
 .input-group input[type="password"] {
-  width: calc(100% - 20px);
+  /* width: calc(100% - 70px); 
+   border: 1px solid #ccc;
+  */
+
+  width: 250px;
+  
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  height: 50px;
+  border-radius: 25px;
   box-sizing: border-box;
 }
-
+ 
 .input-group label {
   display: block;
   color: #333;
@@ -52,7 +57,7 @@ body {
 .input-group input[type="checkbox"] {
   display: inline-block;
   vertical-align: middle;
-  margin-right: 5px;
+  margin-left: 35%;  
 }
 
 .forgot-password {
@@ -68,30 +73,26 @@ body {
 }
 
 .input-group input[type="submit"] {
-  background: linear-gradient(to right, #2980b9, #6dd5fa);
+  /* background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff); */
+  background-color: #1e6ef0 ;
+  width: 220px;
   border: 0;
   color: white;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 7px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
 .input-group input[type="submit"]:hover {
-  background: linear-gradient(to right, #6dd5fa, #2980b9);
+  background: linear-gradient(to right, #2980b9, #6dd5fa, #2980b9); 
 }
 
-.login-link {
-  margin-top: 20px;
-  color: #888; /* Link color */
+.error-message {
+  color: red;
+   
+  font-size: 14px;
+  margin-top: 10px;
+   
 }
-
-.login-link a {
-  color: #000000; /* Link color on hover */
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.login-link a:hover {
-  color: #38f9d7; /* Link color on hover */
-}
+ 
