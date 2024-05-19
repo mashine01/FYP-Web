@@ -11,7 +11,18 @@
 <body>
     <nav>
         <a href="#">Home</a>
-        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+        <!-- <a href="#"><img src="logoutImg.png"></a> -->
+         <!--  <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <img src="img.png" onclick="toggleDropdown()"> </a>
+            -->
+        <!-- Profile Picture and Dropdown -->
+        <div class="profile-container">
+            <img src="pic.jpeg" alt="Profile Picture" class="profile-pic" onclick="toggleDropdown()">
+            <div class="dropdown-menu" id="dropdownMenu">
+            <a href="edit-profile.html">Edit</a>
+             <a href="#">Logout</a>
+            </div>
+        </div>
+
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
