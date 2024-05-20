@@ -16,11 +16,7 @@ class FrontController extends Controller
     {
         try {
             $client = new Client();
-<<<<<<< Updated upstream
             $response = $client->post('https://e8ed-34-125-221-252.ngrok-free.app/prompt', [
-=======
-            $response = $client->post('https://28e9-34-125-161-165.ngrok-free.app/prompt', [
->>>>>>> Stashed changes
                 'query' => $request->all()
             ]);
             $statusCode = $response->getStatusCode();

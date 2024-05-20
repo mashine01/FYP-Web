@@ -10,25 +10,30 @@
 
 <body>
     <nav>
+        <div class="hamburger-menu" onclick="toggleSidebar()">
+            &#9776;
+        </div>
         <a href="#">Home</a>
-        <!-- <a href="#"><img src="logoutImg.png"></a> -->
-         <!--  <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <img src="img.png" onclick="toggleDropdown()"> </a>
-            -->
-        <!-- Profile Picture and Dropdown -->
+
         <div class="profile-container">
             <img src="pic.jpeg" alt="Profile Picture" class="profile-pic" onclick="toggleDropdown()">
             <div class="dropdown-menu" id="dropdownMenu">
-            <a href="edit-profile.html">Edit</a>
-             <a href="#">Logout</a>
+                <a href="edit-profile.html">Edit</a>
+                <a href="#">Logout</a>
             </div>
         </div>
-
+        
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
-
-        <div class="animation start-home"></div>
     </nav>
+
+    <div class="sidebar" id="sidebar">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="settings.html">Settings</a>
+        <a href="contact-us.html">Contact Us</a>
+    </div>
+
     <div class="midbar">
         <div class="chat-box" id="chats">
             I am JournalistAI, a finetuned model of LLama2. I am an artificial intelligence designed to
@@ -37,15 +42,13 @@
         </div>
     </div>
 
-
     <div id="bottomDiv">
         <form id="wordVocabForm" method="post" action="{{ route('prompt') }}">
             @csrf
             <div id="divform">
                 <div class="input-container">
                     <label for="wordLimit">Word limit:</label>
-                    <input type="number" id="wordLimit" name="word_limit" value="100" name="wordLimit"
-                        min="100" max="300">
+                    <input type="number" id="wordLimit" name="word_limit" value="100" min="100" max="300">
                 </div>
                 <div class="input-container">
                     <label for="translate">Translate:</label>
@@ -73,14 +76,14 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Load previous prompts from local storage
             var promptsHistory = JSON.parse(localStorage.getItem('promptsHistory')) || [];
 
             // Function to update chat history
             function updateChatHistory() {
                 $('#chats').empty();
-                promptsHistory.forEach(function(prompt) {
+                promptsHistory.forEach(function (prompt) {
                     $('#chats').append('<div>' + prompt + '</div><hr>');
                 });
             }
@@ -89,7 +92,7 @@
             updateChatHistory();
 
             // Click event for generating new prompt
-            $("#btn").click(function(e) {
+            $("#btn").click(function (e) {
                 e.preventDefault();
                 $("#btn").val("■");
                 // Get form data
@@ -99,7 +102,7 @@
                     url: $("#wordVocabForm").attr("action"),
                     type: "post",
                     data: formData,
-                    success: function(data) {
+                    success: function (data) {
                         // Add new prompt to history
                         promptsHistory.push(data);
                         // Limit the history to 10 prompts
@@ -112,13 +115,15 @@
                         updateChatHistory();
                         $("#btn").val("->");
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error(error);
                         $("#btn").val("->");
                     }
                 });
             });
         });
+
+        
     </script>
 </body>
 
