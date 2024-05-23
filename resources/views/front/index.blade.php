@@ -18,8 +18,9 @@
         <div class="profile-container">
             <img src="/images/ppic.png" alt="Profile Picture" class="profile-pic" onclick="toggleDropdown()">
             <div class="dropdown-menu" id="dropdownMenu">
-                <a href="edit.php">Edit</a>
-                <a href="#">Logout</a>
+                <a href="editprofile.blade.php">Edit</a>
+                <a href="#"Logout>Logout</a>
+                
             </div>
         </div>
         
