@@ -13,12 +13,12 @@
         <div class="hamburger-menu" onclick="toggleSidebar()">
             &#9776;
         </div>
-        <a href="#">Home</a>
+        <a href="#">Content Generator</a>
 
         <div class="profile-container">
-            <img src="pic.jpeg" alt="Profile Picture" class="profile-pic" onclick="toggleDropdown()">
+            <img src="/images/ppic.png" alt="Profile Picture" class="profile-pic" onclick="toggleDropdown()">
             <div class="dropdown-menu" id="dropdownMenu">
-                <a href="edit-profile.html">Edit</a>
+                <a href="edit.php">Edit</a>
                 <a href="#">Logout</a>
             </div>
         </div>
@@ -69,7 +69,13 @@
 
             <div class="input-with-button">
                 <input type="text" id="prmpt" name="prompt" placeholder=" Enter your prompt">
-                <input type="button" id="btn" value="->">
+                <button id="send-btn">
+                    <img src="/images/send-message.png" alt="Send Button">
+                </button> 
+                <!--  <img src="/images/dm.png" alt="send btn" id="send-btn"> -->
+                
+                <!-- <input type="button" id="btn" value="->" > 
+                <img src="/images/send.png" alt="Profile Picture" he> -->
             </div>
         </form>
     </div>
