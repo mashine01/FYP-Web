@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::get('/', [FrontController::class, 'index'])->name('index');
     Route::post('/prompt', [FrontController::class, 'prompt'])->name('prompt');
-    Route::get('/edit_profile', [FrontController::class, 'edit_profile'])->name('edit_profile');
-    Route::post('/update_profile', [FrontController::class, 'update_profile'])->name('update_profile');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

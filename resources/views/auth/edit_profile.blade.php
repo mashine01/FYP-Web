@@ -23,7 +23,6 @@
             </div>
 
             <button type="submit">Save</button>
-            <a href="reset.html" class="reset-password-link">Reset Password</a>
         </form>
     </div>
 </body>
