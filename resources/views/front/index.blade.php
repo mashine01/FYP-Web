@@ -5,28 +5,28 @@
     <meta charset="utf-8">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="/js/index.js"></script>
 </head>
 
 <body>
     <nav>
-        <div class="hamburger-menu" onclick="toggleSidebar()">
-            &#9776;
+        <div>
+            <img width="40px" height="40px" src="/images/logo.png" alt="JournalistAI Logo" class="logo">
         </div>
-        <a href="#">Content Generator</a>
-
+        <a>JournalistAI</a>
         <div class="profile-container">
             <img src="/images/ppic.png" alt="Profile Picture" class="profile-pic" onclick="toggleDropdown()">
             <div class="dropdown-menu" id="dropdownMenu">
-                <a href="editprofile.blade.php">Edit</a>
-                <a href="#"Logout>Logout</a>
-                
+                <a href="{{route("edit_profile")}}">Edit</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
             </div>
         </div>
-        
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
     </nav>
 
     <div class="sidebar" id="sidebar">
@@ -70,38 +70,42 @@
 
             <div class="input-with-button">
                 <input type="text" id="prmpt" name="prompt" placeholder=" Enter your prompt">
-                <button id="send-btn">
-                    <img src="/images/send-message.png" alt="Send Button">
-                </button> 
-                <!--  <img src="/images/dm.png" alt="send btn" id="send-btn"> -->
-                
-                <!-- <input type="button" id="btn" value="->" > 
-                <img src="/images/send.png" alt="Profile Picture" he> -->
+                <button id="send-btn" type="submit">
+                    <i class="fas fa-paper-plane fa-2x" id="send-icon"></i>
+                </button>
             </div>
         </form>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function () {
-            // Load previous prompts from local storage
-            var promptsHistory = JSON.parse(localStorage.getItem('promptsHistory')) || [];
+        $(document).ready(function() {
+            var userEmail = "{{ Auth::user()->email }}"; // Retrieving user email from Laravel session
 
-            // Function to update chat history
-            function updateChatHistory() {
-                $('#chats').empty();
-                promptsHistory.forEach(function (prompt) {
-                    $('#chats').append('<div>' + prompt + '</div><hr>');
-                });
+            function getUserPromptsHistory() {
+                var key = 'promptsHistory_' + userEmail;
+                return JSON.parse(localStorage.getItem(key)) || [];
             }
 
-            // Initial update
+            function updateChatHistory() {
+                if (localStorage.length === 0) {
+                    return;
+                } else {
+                    $('#chats').empty();
+                    var promptsHistory = getUserPromptsHistory();
+                    promptsHistory.forEach(function(prompt) {
+                        $('#chats').append('<div>' + prompt + '</div><hr>');
+                    });
+                }
+            }
+
             updateChatHistory();
 
-            // Click event for generating new prompt
-            $("#btn").click(function (e) {
+            $("#send-btn").click(function(e) {
                 e.preventDefault();
-                $("#btn").val("■");
+                var sendIcon = $("#send-icon");
+                sendIcon.removeClass("fa-paper-plane").addClass("fa-spinner fa-spin");
+
                 // Get form data
                 var formData = $("#wordVocabForm").serialize();
                 // Make AJAX request
@@ -109,28 +113,26 @@
                     url: $("#wordVocabForm").attr("action"),
                     type: "post",
                     data: formData,
-                    success: function (data) {
+                    success: function(data) {
                         // Add new prompt to history
+                        var promptsHistory = getUserPromptsHistory();
                         promptsHistory.push(data);
                         // Limit the history to 10 prompts
                         if (promptsHistory.length > 10) {
-                            promptsHistory.shift(); // Remove the oldest prompt
+                            promptsHistory.shift();
                         }
-                        // Update local storage
-                        localStorage.setItem('promptsHistory', JSON.stringify(promptsHistory));
-                        // Update chat history display
+                        var key = 'promptsHistory_' + userEmail;
+                        localStorage.setItem(key, JSON.stringify(promptsHistory));
                         updateChatHistory();
-                        $("#btn").val("->");
+                        sendIcon.removeClass("fa-spinner fa-spin").addClass("fa-paper-plane");
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         console.error(error);
-                        $("#btn").val("->");
+                        sendIcon.removeClass("fa-spinner fa-spin").addClass("fa-paper-plane");
                     }
                 });
             });
         });
-
-        
     </script>
 </body>
 
