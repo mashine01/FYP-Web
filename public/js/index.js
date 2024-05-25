@@ -1,48 +1,21 @@
-
-
-
-
-// Function to toggle the profile picture dropdown menu
 function toggleDropdown() {
   const dropdownMenu = document.getElementById('dropdownMenu');
-  dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+  dropdownMenu.classList.toggle('active');
 }
 
-// Function to toggle the sidebar
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  sidebar.classList.toggle('show');
-}
+// Close the dropdown if the user clicks anywhere else on the screen
+document.body.addEventListener('click', function(event) {
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  const targetElement = event.target;
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.profile-pic')) {
-    const dropdowns = document.getElementsByClassName('dropdown-menu');
-    for (let i = 0; i < dropdowns.length; i++) {
-      const openDropdown = dropdowns[i];
-      if (openDropdown.style.display === 'block') {
-        openDropdown.style.display = 'none';
-      }
-    }
+  // Check if the clicked element is outside of the dropdown menu
+  if (!dropdownMenu.contains(targetElement) && !dropdownMenu.classList.contains('active')) {
+    // Close the dropdown if it is currently active
+    dropdownMenu.classList.remove('active');
   }
-}
+});
 
-// Close the sidebar if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.hamburger-menu') && !event.target.matches('.profile-pic')) {
-    const sidebar = document.getElementById('sidebar');
-    if (sidebar.classList.contains('show')) {
-      sidebar.classList.remove('show');
-    }
-
-    const dropdowns = document.getElementsByClassName('dropdown-menu');
-    for (let i = 0; i < dropdowns.length; i++) {
-      const openDropdown = dropdowns[i];
-      if (openDropdown.style.display === 'block') {
-        openDropdown.style.display = 'none';
-      }
-    }
-  }
-}
-
- 
+// Stop event propagation when clicking inside the dropdown menu
+document.getElementById('dropdownMenu').addEventListener('click', function(event) {
+  event.stopPropagation();
+});

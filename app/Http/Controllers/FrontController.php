@@ -6,6 +6,7 @@ use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class FrontController extends Controller
 {
@@ -43,16 +44,38 @@ class FrontController extends Controller
 
     public function update_profile(Request $request)
     {
-        $request->validate([
-            'avatar' => 'required|image|mimes:jpeg,jpg|max:2048',
-        ]);
-        $avatar = $request->file('avatar');
-        $avatarName = $request->user()->email . '.' . $avatar->getClientOriginalExtension();
-        $customPath = '/images/';
-        $avatar->storeAs($customPath, $avatarName);
-        $request->user()->update([
-            'avatar' => $customPath . $avatarName,
-        ]);
-        return redirect()->route('edit_profile')->with('success', 'Profile updated successfully');
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'avatar' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            ],
+            [
+                'avatar.required' => 'Please select an image',
+                'avatar.image' => 'Please select an image',
+                'avatar.mimes' => 'Please select a jpeg or jpg image',
+                'avatar.max' => 'Please select an image less than 2MB',
+            ]
+        );
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        if ($request->hasFile('avatar')) {
+            $oldAvatarPath = $request->user()->avatar;
+
+            // Check if the user has an existing avatar and delete it
+            if ($oldAvatarPath && file_exists(public_path($oldAvatarPath))) {
+                unlink(public_path($oldAvatarPath));
+            }
+            $avatar = $request->file('avatar');
+            $avatarName = $request->user()->email . '.' . $avatar->getClientOriginalExtension();
+            $customPath = '/images/';
+            $avatar->move(public_path($customPath), $avatarName);
+            $request->user()->update([
+                'avatar' => $customPath . $avatarName,
+            ]);
+            return redirect()->route('edit_profile')->with('success', 'Profile updated successfully');
+        }
+        return redirect()->route('edit_profile')->with('error', 'Error updating profile');
     }
 }

@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Main Page</title>
+    <link rel="icon" href="/images/logo.png" type="image/png">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="/js/index.js"></script>
@@ -16,9 +17,9 @@
         </div>
         <a>JournalistAI</a>
         <div class="profile-container">
-            <img src="/images/ppic.png" alt="Profile Picture" class="profile-pic" onclick="toggleDropdown()">
+            <img src="{{ Auth::user()->avatar }}" alt="Profile Picture" class="profile-pic" onclick="toggleDropdown()">
             <div class="dropdown-menu" id="dropdownMenu">
-                <a href="{{route("edit_profile")}}">Edit</a>
+                <a href="{{ route('edit_profile') }}">Edit</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
@@ -29,17 +30,15 @@
         </div>
     </nav>
 
-    <div class="sidebar" id="sidebar">
-        <a href="dashboard.html">Dashboard</a>
-        <a href="settings.html">Settings</a>
-        <a href="contact-us.html">Contact Us</a>
-    </div>
-
     <div class="midbar">
         <div class="chat-box" id="chats">
-            I am JournalistAI, a finetuned model of LLama2. I am an artificial intelligence designed to
-            process and generate human-like text based on the input provided to me. I am here to assist you with any
-            questions or tasks you may have to the best of my abilities!
+            <p class="responses">
+            </p>
+            <div class="clear-chat-container">
+                <button id="clear-chat-btn">
+                    <i class="fas fa-trash fa-2x"></i>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -80,7 +79,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            var userEmail = "{{ Auth::user()->email }}"; // Retrieving user email from Laravel session
+            var userEmail = "{{ Auth::user()->email }}";
+            var originalText =
+                "I am JournalistAI, a finetuned model of LLama2. I am an artificial intelligence designed to process and generate human-like text based on the input provided to me. I am here to assist you with any questions or tasks you may have to the best of my abilities!";
 
             function getUserPromptsHistory() {
                 var key = 'promptsHistory_' + userEmail;
@@ -89,17 +90,30 @@
 
             function updateChatHistory() {
                 if (localStorage.length === 0) {
-                    return;
+                    $('.responses').empty();
+                    $('.responses').append('<div>' + originalText + '</div>');
                 } else {
-                    $('#chats').empty();
+                    $('.responses').empty();
                     var promptsHistory = getUserPromptsHistory();
                     promptsHistory.forEach(function(prompt) {
-                        $('#chats').append('<div>' + prompt + '</div><hr>');
+                        $('.responses').append('<div>' + prompt + '</div><hr>');
                     });
                 }
             }
 
             updateChatHistory();
+
+            function clearChatHistory() {
+                var userEmail = "{{ Auth::user()->email }}";
+                var key = 'promptsHistory_' + userEmail;
+                localStorage.removeItem(key);
+                updateChatHistory(); // Update UI after clearing history
+            }
+
+            // Attach click event handler to clear chat button
+            $("#clear-chat-btn").click(function() {
+                clearChatHistory();
+            });
 
             $("#send-btn").click(function(e) {
                 e.preventDefault();
@@ -134,6 +148,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>

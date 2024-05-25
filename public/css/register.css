@@ -51,13 +51,6 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background: linear-gradient(to right, #6dd5fa, #2980b9);
 }
-
-.error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
 .login-link {
   margin-top: 20px;
   color: #888;
@@ -76,28 +69,7 @@ input[type="submit"]:hover {
   /* Link color on hover */
 }
 
-/* CSS for modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  overflow: auto;
-}
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  animation-name: fadeIn;
-  animation-duration: 0.4s;
-}
 
 @keyframes fadeIn {
   from {

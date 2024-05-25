@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: hsla(206, 6%, 78%, 0.021);
+    background-color: whitesmoke;
     margin: 0;
 }
 
@@ -13,7 +13,8 @@ nav {
     border-radius: 8px;
     font-size: 0;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
-    padding: 0 20px; /* Add padding for spacing */
+    padding: 0 20px;
+    margin-bottom: 20px;
 }
 
 nav a {
@@ -28,17 +29,38 @@ nav a {
     text-align: center;
 }
 
-nav .animation {
+
+.dropdown-menu {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
     position: absolute;
-    height: 100%;
-    top: 0;
-    z-index: 0;
-    background: #002244;
-    border-radius: 8px;
-    transition: all .5s ease 0s;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1000;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+#dropdownMenu.active {
+    opacity: 1;
+    max-height: 1000px; /* Adjust this value to fit your dropdown content */
+  }
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
 }
 
 .midbar {
+    position: relative;
     padding: 5px;
     background-color: #002244;
     margin: auto;
@@ -48,22 +70,38 @@ nav .animation {
     margin-bottom: 17px;
 }
 
-#chats {
+.chat-box {
+    height: 50vh;
+    overflow-y: scroll;
+    padding: 30px;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 10px;
     height: 50vh;
     overflow-y: scroll;
 }
 
-nav {
-    margin-bottom: 20px;
+.clear-chat-container {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
 }
 
-.chat-box {
-    font-size: 16px;
-    padding: 30px;
-    height: 40px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+#clear-chat-btn {
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    color: #666;
+    transition: transform 0.3s ease-in-out;
+}
+
+
+#clear-chat-btn:hover {
+    color: #333;
+    transform: scale(1.2);
 }
 
 #bottomDiv {
@@ -82,7 +120,7 @@ nav {
     justify-content: space-between;
     margin: 0 2vw;
     font-size: large;
-    
+
 }
 
 #divform input,
@@ -118,16 +156,16 @@ select {
 .input-with-button {
     position: relative;
     display: inline-block;
-    
+
 }
 
 .input-with-button input[type="text"] {
     padding-right: 30px;
     font-size: medium;
-    
+
 }
 
-.input-with-button #send-btn{
+.input-with-button #send-btn {
     position: absolute;
     height: 50px;
     width: 50px;
@@ -141,6 +179,15 @@ select {
     color: blue;
 }
 
+#send-btn #send-icon {
+    transition: transform 0.3s;
+}
+
+#send-btn:hover #send-icon {
+    transform: scale(1.5);
+}
+
+
 .profile-container {
     position: relative;
 }
@@ -150,61 +197,4 @@ select {
     height: 30px;
     border-radius: 50%;
     cursor: pointer;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 50px;
-    right: 0;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    overflow: hidden;
-    z-index: 1000;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-}
-
-.dropdown-menu a:hover {
-    background-color: #f1f1f1;
-}
-
-.sidebar {
-    height: 100vh;
-    width: 200px;
-    position: fixed;
-    top: 0;
-    left: -200px; /* Initially hidden on the left */
-    background-color: white;
-    padding-top: 20px;
-    transition: 0.3s;
-}
-
-.sidebar a {
-    padding: 15px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    color: black;
-    display: block;
-}
-
-.sidebar a:hover {
-    background-color: #1e6ef0;
-}
-
-.sidebar.show {
-    left: 0; /* Show the sidebar by bringing it to the left */
-}
-
-
-::placeholder{
-    padding-left: 1%;
-    color: black;
-    font-size: larger;
 }

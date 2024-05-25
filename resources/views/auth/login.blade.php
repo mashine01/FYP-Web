@@ -7,21 +7,9 @@
     <title>Login</title>
     <link rel="stylesheet" href="/css/register.css">
 </head>
+@include('front.partials.messages')
 
 <body>
-    <!-- Displaying Errors -->
-    @if ($errors->any())
-        <div id="errorModal" class="modal" style="display: block;">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-    @endif
     <div class="signup-container">
         <img style="object-fit: contain;" height="250px" width="250px" src="/images/logo.png" alt="logo">
         <h2>Login</h2>
