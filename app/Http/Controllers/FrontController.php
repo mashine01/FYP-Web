@@ -65,11 +65,13 @@ class FrontController extends Controller
 
             // Check if the user has an existing avatar and delete it
             if ($oldAvatarPath && file_exists(public_path($oldAvatarPath))) {
-                unlink(public_path($oldAvatarPath));
+                if (basename($oldAvatarPath) !== 'user.png') {
+                    unlink(public_path($oldAvatarPath));
+                }
             }
             $avatar = $request->file('avatar');
             $avatarName = $request->user()->email . '.' . $avatar->getClientOriginalExtension();
-            $customPath = '/images/';
+            $customPath = '/images/avatars/';
             $avatar->move(public_path($customPath), $avatarName);
             $request->user()->update([
                 'avatar' => $customPath . $avatarName,
