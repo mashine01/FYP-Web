@@ -10,7 +10,6 @@ nav {
     align-items: center;
     height: 50px;
     background: #002244;
-    border-radius: 8px;
     font-size: 0;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
     padding: 0 20px;
@@ -45,7 +44,7 @@ nav a {
 
 #dropdownMenu.active {
     opacity: 1;
-    max-height: 1000px; /* Adjust this value to fit your dropdown content */
+    max-height: 1000px;
   }
 
 .dropdown-menu a {
