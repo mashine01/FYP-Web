@@ -128,10 +128,10 @@
                     type: "post",
                     data: formData,
                     success: function(data) {
+                        data = data.replace(/\n/g, '<br>');
                         // Add new prompt to history
                         var promptsHistory = getUserPromptsHistory();
                         promptsHistory.push(data);
-                        // Limit the history to 10 prompts
                         if (promptsHistory.length > 10) {
                             promptsHistory.shift();
                         }

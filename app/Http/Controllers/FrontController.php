@@ -19,7 +19,7 @@ class FrontController extends Controller
     {
         try {
             $client = new Client();
-            $response = $client->post('https://b5a9-34-82-198-170.ngrok-free.app/prompt', [
+            $response = $client->post('https://755b-34-90-244-150.ngrok-free.app/prompt', [
                 'query' => $request->all()
             ]);
             $statusCode = $response->getStatusCode();
