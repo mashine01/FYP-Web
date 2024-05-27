@@ -6,7 +6,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+  background: #002244;
 }
 
 .signup-container {
