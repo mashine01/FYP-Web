@@ -2,32 +2,45 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: whitesmoke;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
 }
 
 nav {
+    height: 7vh;
+    background: #002244;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
-    background: #002244;
-    font-size: 0;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
-    padding: 0 20px;
-    margin-bottom: 20px;
 }
 
-nav a {
+nav .title {
+    position: relative;
+    right: 7vw;
     font-size: 15px;
-    margin: 0 2vw;
     color: white;
     text-decoration: none;
-    line-height: 50px;
-    position: relative;
-    z-index: 1;
-    display: inline-block;
-    text-align: center;
 }
 
+.logo {
+    width: 15%;
+    height: auto;
+}
+
+.profile-container {
+    position: relative;
+}
+
+.profile-pic {
+    width: 2vw;
+    height: 4vh;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
 .dropdown-menu {
     opacity: 0;
@@ -58,7 +71,7 @@ nav a {
     background-color: #f1f1f1;
 }
 
-.midbar {
+.midDiv {
     position: relative;
     padding: 5px;
     background-color: #002244;
@@ -66,7 +79,6 @@ nav a {
     border-radius: 10px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     width: 95%;
-    margin-bottom: 17px;
 }
 
 .chat-box {
@@ -77,7 +89,23 @@ nav a {
     color: black;
     border-radius: 10px;
     height: 50vh;
-    overflow-y: scroll;
+}
+
+.chat-box p {
+    margin: 0 50px;
+}
+
+.chat-box::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scroll thumb */
+    border-radius: 20px; /* Roundness of the scroll thumb */
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the scroll track */
 }
 
 .clear-chat-container {
@@ -109,7 +137,6 @@ nav a {
     align-items: center;
     background-color: #002244;
     color: white;
-    height: 200px;
 }
 
 #divform {
@@ -131,7 +158,7 @@ select {
 #prmpt {
     width: 80vw;
     height: 8vh;
-    border-radius: 37px;
+    border-radius: 10px;
     padding-left: 1%;
 }
 
@@ -145,17 +172,17 @@ select {
     width: 150px;
 }
 
-#vocab,
-#wordLimit {
-    height: 35px;
-    width: 150px;
-    font-size: large;
+#wordLimit,
+#translate {
+    height: 4vh;
+    width: 6vw;
+    font-size: 16px;
 }
 
 .input-with-button {
     position: relative;
     display: inline-block;
-
+    margin-bottom: 2vw;
 }
 
 .input-with-button input[type="text"] {
@@ -165,17 +192,18 @@ select {
 }
 
 .input-with-button #send-btn {
+    background-color: transparent;
+    overflow: hidden;
     position: absolute;
     height: 50px;
     width: 50px;
     top: 15%;
     right: 1%;
     border: none;
-    background-color: white;
 }
 
 #send-icon {
-    color: blue;
+    color: #002244;
 }
 
 #send-btn #send-icon {
@@ -184,16 +212,4 @@ select {
 
 #send-btn:hover #send-icon {
     transform: scale(1.5);
-}
-
-
-.profile-container {
-    position: relative;
-}
-
-.profile-pic {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
 }

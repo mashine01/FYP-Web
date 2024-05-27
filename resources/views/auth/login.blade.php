@@ -12,7 +12,7 @@
 
 <body>
     <div class="signup-container">
-        <img style="object-fit: contain;" height="250px" width="250px" src="/images/logo.png" alt="logo">
+        <img src="/images/logo-white.png" alt="logo" class="auth-logo">
         <h2>Login</h2>
         <form id="login-form" action="{{ route('login') }}" method="post">
             @csrf

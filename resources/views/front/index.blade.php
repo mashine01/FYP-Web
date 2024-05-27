@@ -10,26 +10,27 @@
 </head>
 
 <body>
+
     <nav>
         <div>
-            <img width="40px" height="40px" src="/images/logo.png" alt="JournalistAI Logo" class="logo">
+            <img src="/images/logo.png" alt="JournalistAI Logo" class="logo">
         </div>
-        <a>JournalistAI</a>
+        <a class="title">JournalismAI</a>
         <div class="profile-container">
             <img src="{{ Auth::user()->avatar }}" alt="Profile Picture" class="profile-pic" onclick="toggleDropdown()">
             <div class="dropdown-menu" id="dropdownMenu">
                 <a href="{{ route('edit_profile') }}">Edit</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
 
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
         </div>
     </nav>
-
-    <div class="midbar">
+    <div class="midDiv">
         <div class="chat-box" id="chats">
             <p class="responses">
             </p>
@@ -47,7 +48,11 @@
             <div id="divform">
                 <div class="input-container">
                     <label for="wordLimit">Word limit:</label>
-                    <input type="number" id="wordLimit" name="word_limit" value="100" min="100" max="300">
+                    <select id="wordLimit" name="wordLimit">
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="300">300</option>
+                    </select>
                 </div>
                 <div class="input-container">
                     <label for="translate">Translate:</label>
@@ -56,18 +61,10 @@
                         <option value="ur">Urdu</option>
                     </select>
                 </div>
-                <div class="input-container">
-                    <label for="vocab">Vocabulary type:</label>
-                    <select id="vocab" name="vocab_type">
-                        <option value="easy">Easy</option>
-                        <option value="intermediate">Medium</option>
-                        <option value="advanced">Expert</option>
-                    </select>
-                </div>
             </div>
 
             <div class="input-with-button">
-                <input type="text" id="prmpt" name="prompt" placeholder=" Enter your prompt">
+                <input type="text" id="prmpt" name="prompt" placeholder="Enter your prompt">
                 <button id="send-btn" type="submit">
                     <i class="fas fa-paper-plane fa-2x" id="send-icon"></i>
                 </button>
