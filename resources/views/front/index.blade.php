@@ -10,26 +10,7 @@
 </head>
 
 <body>
-
-    <nav>
-        <div>
-            <img src="/images/logo.png" alt="JournalistAI Logo" class="logo">
-        </div>
-        <a class="title">JournalismAI</a>
-        <div class="profile-container">
-            <img src="{{ Auth::user()->avatar }}" alt="Profile Picture" class="profile-pic" onclick="toggleDropdown()">
-            <div class="dropdown-menu" id="dropdownMenu">
-                <a href="{{ route('edit_profile') }}">Edit</a>
-
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-        </div>
-    </nav>
+    @include('front.partials.nav')
     <div class="midDiv">
         <div class="chat-box" id="chats">
             <p class="responses">

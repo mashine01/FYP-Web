@@ -1,0 +1,65 @@
+nav {
+    height: 7vh;
+    background: #212121;
+    border: 1px solid black;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
+}
+
+nav .title {
+    font-weight: bold;
+    font-style: italic;
+    position: relative;
+    right: 7vw;
+    font-size: 28px;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.logo {
+    width: 15%;
+    height: auto;
+}
+
+.profile-container {
+    position: relative;
+}
+
+.profile-pic {
+    width: 3vw;
+    height: auto;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1000;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+#dropdownMenu.active {
+    opacity: 1;
+    max-height: 1000px;
+  }
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}

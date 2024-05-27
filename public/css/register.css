@@ -6,7 +6,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #002244;
+  background: linear-gradient(to right, #eae3fb, #d3f0ff);
 }
 
 .signup-container {
@@ -51,12 +51,12 @@ input[type="submit"] {
   width: 100%;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
 input[type="submit"]:hover {
-  background: linear-gradient(to right, #6dd5fa, #2980b9);
+  background: #2980b9;
 }
+
 .login-link {
   margin-top: 20px;
   color: #888;

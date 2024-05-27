@@ -10,6 +10,7 @@
 </head>
 @include('front.partials.messages')
 <body>
+    <a href="{{ route('index') }}" class="back-btn">Back</a>
     <div class="form-container">
         <form action="{{ route('update_profile') }}" method="post" enctype="multipart/form-data">
             @csrf

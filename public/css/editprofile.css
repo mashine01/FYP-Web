@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #002244;
+    background: linear-gradient(to right, #eae3fb, #d3f0ff);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,7 +80,7 @@ h2 {
 button {
     width: 100%;
     padding: 12px;
-    background-color: #007BFF;
+    background: linear-gradient(to right, #2980b9, #6dd5fa);
     color: #ffffff;
     border: none;
     border-radius: 5px;
