@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    @include('front.partials.head')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up Page</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="/css/register.css">
 </head>
 
