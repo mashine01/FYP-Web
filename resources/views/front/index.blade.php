@@ -28,7 +28,7 @@
             <div id="divform">
                 <div class="input-container">
                     <label for="wordLimit">Word limit:</label>
-                    <select id="wordLimit" name="wordLimit">
+                    <select id="wordLimit" name="word_limit">
                         <option value="100">100</option>
                         <option value="200">200</option>
                         <option value="300">300</option>
