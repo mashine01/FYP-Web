@@ -25,7 +25,6 @@
 
     <div id="bottomDiv">
         <form id="wordVocabForm" method="post" action="{{ route('prompt') }}">
-            @csrf
             <div id="divform">
                 <div class="input-container">
                     <label for="wordLimit">Word limit:</label>
