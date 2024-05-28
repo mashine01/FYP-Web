@@ -6,13 +6,13 @@
     @include('front.partials.head')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
-    <link rel="stylesheet" href="/css/editprofile.css">
+    <link rel="stylesheet" href="/css/edit_profile.css">
 </head>
 @include('front.partials.messages')
 <body>
-    <a href="{{ route('index') }}" class="back-btn">Back</a>
     <div class="form-container">
         <form action="{{ route('update_profile') }}" method="post" enctype="multipart/form-data">
+            <a href="{{ route('index') }}" class="back-btn">Back</a>
             @csrf
             <h2>Edit Profile</h2>
             <input type="text" name="email" value="{{ Auth::user()->email }}" style="display: none;">

@@ -1,4 +1,4 @@
-nav {
+.top-bar {
     height: 7vh;
     background: #212121;
     border: 1px solid black;
@@ -9,7 +9,7 @@ nav {
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .1);
 }
 
-nav .title {
+.top-bar .title {
     font-weight: bold;
     font-style: italic;
     position: relative;
@@ -26,10 +26,12 @@ nav .title {
 
 .profile-container {
     position: relative;
+    background-color: white;
+    border-radius: 50%;
 }
 
 .profile-pic {
-    width: 3vw;
+    width: 2.5vw;
     height: auto;
     border-radius: 50%;
     cursor: pointer;

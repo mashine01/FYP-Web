@@ -19,6 +19,9 @@
             @csrf
             @method('POST')
             <div class="input-group">
+                <input type="hidden" id="avatar" name="avatar" value="/images/user.png">
+            </div>
+            <div class="input-group">
                 <input type="email" id="email" name="email" placeholder="Email" required>
             </div>
             <div class="input-group">
@@ -29,7 +32,6 @@
                     placeholder="Confirm password" required>
             </div>
             <input type="submit" value="Sign Up">
-            <div class="error-message" id="error-message"></div> <br>
             <div class="login-link">Already have an account?<a href="{{ route('login') }}"> Log in</a></div>
         </form>
     </div>

@@ -6,7 +6,7 @@
     <script src="/js/nav.js"></script>
 </head>
 
-<nav>
+<nav class="top-bar">
     <div>
         <img src="/images/logo.png" alt="JournalistAI Logo" class="logo">
     </div>

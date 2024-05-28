@@ -87,23 +87,23 @@ button {
     cursor: pointer;
     font-size: 18px;
     font-weight: 600;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
+    margin-top: 3vw;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background: #2980b9;
 }
 
-.reset-password-link {
-    display: block;
-    text-align: center;
-    margin-top: 15px;
-    color: #007BFF;
-    text-decoration: none;
+.back-btn {
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    color: black;
     font-weight: 500;
+    text-decoration: none;
 }
 
-.reset-password-link:hover {
-    text-decoration: underline;
+.back-btn:hover {
+    background-color: black;
+    color: white;
 }
